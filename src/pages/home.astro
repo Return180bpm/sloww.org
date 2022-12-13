@@ -1,37 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+
+const apiKey = import.meta.env.BUILDER_API_KEY;
+
+
+const handleError = (err: any) => {
+  console.log(err);
+  // The requested Builder content could not be found.
+  if (err.response.status === 404) {
+    return { data: null };
+  }
+  throw err;
+};
+
+const encodedUrl = encodeURIComponent('/homepage');
+
+const { data: pageData } = await fetch(
+  `https://cdn.builder.io/api/v1/html/page?apiKey=${apiKey}&url=${encodedUrl}`
+)
+  .then((res) => res.json())
+  .catch(handleError);
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
+		<builder-component model='homepage' api-key={apiKey} />
+  <script async src='https://cdn.builder.io/js/webcomponents'></script>
 	</main>
 </Layout>
 
