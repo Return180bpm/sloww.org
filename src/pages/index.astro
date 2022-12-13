@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 const apiKey = "61399c2360c74c329313f36c7772806c";
-
+const encodedUrl = encodeURIComponent('https://meek-cajeta-becf35.netlify.app/');
 
 const handleError = (err: any) => {
   console.log(err);
@@ -14,16 +14,14 @@ const handleError = (err: any) => {
   throw err;
 };
 
-const encodedUrl = encodeURIComponent('/homepage');
-
 const { data: pageData } = await fetch(
-  `https://cdn.builder.io/api/v1/html/page?apiKey=${apiKey}&url=${encodedUrl}`
+  `https://cdn.builder.io/api/v1/html/homepage?apiKey=${apiKey}&url=${encodedUrl}`
 )
   .then((res) => res.json())
   .catch(handleError);
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={pageData.title}>
 	<main>
 		<builder-component model='homepage' api-key={apiKey} />
   <script async src='https://cdn.builder.io/js/webcomponents'></script>
