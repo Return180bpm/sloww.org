@@ -15,15 +15,17 @@ const handleError = (err: any) => {
 };
 
 const { data: pageData } = await fetch(
-  `https://cdn.builder.io/api/v1/html/homepage?apiKey=${apiKey}&url=${encodedUrl}`
+  `https://cdn.builder.io/api/v1/html/homepage?apiKey=${apiKey}`
 )
   .then((res) => res.json())
   .catch(handleError);
+
+// <!-- <builder-component model='homepage' api-key={apiKey} />
+// <script async src='https://cdn.builder.io/js/webcomponents'></script> -->
 ---
 
 <Layout title='sloww'>
-	<builder-component model='homepage' api-key={apiKey} />
-	<script async src='https://cdn.builder.io/js/webcomponents'></script>
+	  <Fragment set:html={pageData.html} />
 </Layout>
 
 <style>
