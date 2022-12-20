@@ -7,7 +7,7 @@ const encodedUrl = encodeURIComponent('https://sloww.org/');
 
 const handleError = (err: any) => {
   console.log(err);
-  // The requested Builder content could not be found.
+
   if (err.response.status === 404) {
     return { html: null };
   }
@@ -30,14 +30,4 @@ const { html: pageHTML } = await fetch(
 	body {
 		margin: 0;
 	}
-	/* main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	} */
 </style>
