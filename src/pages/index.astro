@@ -15,7 +15,7 @@ const handleError = (err: any) => {
 };
 
 const { html: pageHTML } = await fetch(
-  `https://cdn.builder.io/api/v1/qwik/homepage?apiKey=${apiKey}&url=${encodedUrl}&cachebust=true`
+  `https://cdn.builder.io/api/v1/qwik/homepage?apiKey=${apiKey}&cachebust=true`
 )
   .then((res) => res.json())
   .catch(handleError);
