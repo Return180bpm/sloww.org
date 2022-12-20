@@ -3,29 +3,27 @@ import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 
 const apiKey = "61399c2360c74c329313f36c7772806c";
-const encodedUrl = encodeURIComponent('https://meek-cajeta-becf35.netlify.app/');
+const encodedUrl = encodeURIComponent('https://sloww.org/');
 
 const handleError = (err: any) => {
   console.log(err);
   // The requested Builder content could not be found.
   if (err.response.status === 404) {
-    return { data: null };
+    return { html: null };
   }
   throw err;
 };
 
-const { data: pageData } = await fetch(
-  `https://cdn.builder.io/api/v1/html/homepage?apiKey=${apiKey}`
+const { html: pageHTML } = await fetch(
+  `https://cdn.builder.io/api/v1/qwik/homepage?apiKey=${apiKey}&url=${encodedUrl}&cachebust=true`
 )
   .then((res) => res.json())
   .catch(handleError);
 
-// <!-- <builder-component model='homepage' api-key={apiKey} />
-// <script async src='https://cdn.builder.io/js/webcomponents'></script> -->
 ---
 
 <Layout title='sloww'>
-	  <Fragment set:html={pageData.html} />
+	  <Fragment set:html={pageHTML} />
 </Layout>
 
 <style>
