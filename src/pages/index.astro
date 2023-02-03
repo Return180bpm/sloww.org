@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
 
 const apiKey = "61399c2360c74c329313f36c7772806c";
-const encodedUrl = encodeURIComponent('');
+const encodedUrl = encodeURIComponent("");
 
 const handleError = (err: any) => {
   console.log(err);
@@ -19,9 +19,8 @@ const { html: pageHTML } = await fetch(
 )
   .then((res) => res.json())
   .catch(handleError);
-
 ---
 
-<Layout title='sloww'>
-	  <Fragment set:html={pageHTML} />
+<Layout title="sloww">
+  <Fragment set:html={pageHTML} />
 </Layout>
