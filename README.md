@@ -4,7 +4,7 @@
 
 ## ❓ What is this
 
-A homepage for an artist.
+A homepage for an artist. A demo for how to connect [Astro](https://astro.build/) with [Builder.io](https://builder.io/).
 
 ## 🛠 Technical info
 
